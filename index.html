@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThermoRoll Cameroun – Rouleaux de Papier Thermique Professionnel</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --navy: #0f172a;
+      --green: #047857;
+      --gold: #d4af37;
+      --light: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-700: #334155;
+      --gray-900: #1e293b;
+      --success: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--light);
+      color: var(--gray-900);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    /* === UTILS === */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .section {
+      padding: 8rem 0;
+    }
+    @media (max-width: 768px) {
+      .section { padding: 5rem 0; }
+    }
+
+    /* === HEADER === */
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .logo i {
+      color: var(--green);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: var(--gray-900);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--green);
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* === HERO === */
+    .hero {
+      background: linear-gradient(135deg, var(--navy), #1e3a8a);
+      color: white;
+      padding: 10rem 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #03654a;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: var(--navy);
+    }
+
+    /* === CARDS === */
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+    .card-img {
+      height: 200px;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--navy);
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--gray-900);
+    }
+    .price {
+      font-weight: 700;
+      color: var(--green);
+      font-size: 1.1rem;
+      margin: 1rem 0;
+    }
+
+    /* === FAQ === */
+    .faq-section {
+      background: white;
+    }
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .faq-question {
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--navy);
+      transition: color 0.3s;
+    }
+    .faq-question:hover {
+      color: var(--green);
+    }
+    .faq-answer {
+      padding: 0 0 1.5rem 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      color: var(--gray-700);
+      line-height: 1.7;
+    }
+    .faq-answer.show {
+      max-height: 500px;
+      padding: 0 0 1.5rem 0;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+      color: var(--gray-700);
+    }
+    .faq-question.active .faq-icon {
+      transform: rotate(180deg);
+      color: var(--green);
+    }
+
+    /* === CONTACT === */
+    .contact-section {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 6rem 0;
+    }
+    .contact-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      display: inline-block;
+      margin: 1.5rem 0;
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      transition: all 0.3s ease;
+    }
+    .whatsapp-btn:hover {
+      transform: translateY(-3px);
+      background: #128C7E;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--gray-900);
+      color: #cbd5e1;
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #334155;
+      opacity: 0.8;
+    }
+
+    /* === PANIER MODAL === */
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      height: 100vh;
+      background: white;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+      z-index: 1000;
+      transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .cart-modal.show {
+      right: 0;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* === MOBILE MENU === */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 85%;
+      max-width: 320px;
+      height: 100vh;
+      background: white;
+      box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+      z-index: 2000;
+      transition: left 0.3s ease;
+      padding-top: 4.5rem;
+    }
+    .mobile-menu.open {
+      left: 0;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 1.5rem;
+      color: var(--gray-900);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-200);
+      font-weight: 500;
+    }
+    .mobile-menu a:hover {
+      background: var(--gray-50);
+      color: var(--green);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === HEADER === -->
+  <header>
+    <div class="container header-content">
+      <a href="#home" class="logo">
+        <i class="fas fa-print"></i>
+        <span>ThermoRoll Cameroun</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#produits">Produits</a>
+        <a href="#qualite">Qualité</a>
+        <a href="#clients">Clients</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="open-cart" class="btn btn-primary">
+        <i class="fas fa-shopping-cart"></i> Panier
+      </button>
+      <button class="hamburger" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- === MOBILE MENU === -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home">Accueil</a>
+    <a href="#produits">Produits</a>
+    <a href="#qualite">Qualité</a>
+    <a href="#clients">Clients</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- === HERO === -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Rouleaux de Papier Thermique Professionnel au Cameroun</h1>
+      <p>Qualité premium, impression nette, résistance à l’humidité — pour caisses enregistreuses, pharmacies, supermarchés et marchés.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#produits" class="btn btn-primary">
+          <i class="fas fa-shopping-cart"></i> Voir nos produits
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <i class="fas fa-phone"></i> Commander par WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- === PRODUITS === -->
+  <section id="produits" class="section">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12 animate">Nos Rouleaux Professionnels</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 products-grid">
+        <div class="card animate delay-1">
+          <div class="card-img">
+            <i class="fas fa-paperclip"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Rouleau 80 × 80 mm</h3>
+            <p>Standard pour caisses grandes (supermarchés, pharmacies).</p>
+            <div class="price">À partir de <strong>1 250 FCFA</strong></div>
+            <button class="btn btn-primary w-full" onclick="addToCart('Rouleau 80×80 mm', 1250)">
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+        <div class="card animate delay-2">
+          <div class="card-img">
+            <i class="fas fa-receipt"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Rouleau 57 × 45 mm</h3>
+            <p>Petit format pour TPE, kiosques, marchés.</p>
+            <div class="price">À partir de <strong>850 FCFA</strong></div>
+            <button class="btn btn-primary w-full" onclick="addToCart('Rouleau 57×45 mm', 850)">
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+        <div class="card animate delay-3">
+          <div class="card-img">
+            <i class="fas fa-box-open"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Carton de 100 Rouleaux</h3>
+            <p>Idéal pour distributeurs et gros volumes.</p>
+            <div class="price">À partir de <strong>115 000 FCFA</strong></div>
+            <button class="btn btn-primary w-full" onclick="addToCart('Carton 100 rouleaux', 115000)">
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === QUALITÉ === -->
+  <section id="qualite" class="section" style="background: var(--gray-100);">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12 animate">Pourquoi nous choisir ?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="text-center p-6 bg-white rounded-xl shadow animate delay-1">
+          <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-shield-alt text-green-700"></i>
+          </div>
+          <h3 class="font-bold mb-2">BPA Free</h3>
+          <p class="text-gray-700">Papier sans bisphénol A — sûr pour vos clients.</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl shadow animate delay-2">
+          <div class="w-12 h-12 bg-navy-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-truck text-navy"></i>
+          </div>
+          <h3 class="font-bold mb-2">Livraison Rapide</h3>
+          <p class="text-gray-700">Yaoundé & Douala : livraison en 24–48h.</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl shadow animate delay-3">
+          <div class="w-12 h-12 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-check-circle text-gold"></i>
+          </div>
+          <h3 class="font-bold mb-2">Qualité Certifiée</h3>
+          <p class="text-gray-700">Testé pour 10 000+ impressions sans déchirure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CLIENTS === -->
+  <section id="clients" class="section">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12 animate">Utilisé par des milliers de commerçants</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center p-4 bg-white rounded-lg shadow animate delay-1">
+          <i class="fas fa-store text-green-600 text-2xl mb-2"></i>
+          <p>Supermarchés</p>
+        </div>
+        <div class="text-center p-4 bg-white rounded-lg shadow animate delay-2">
+          <i class="fas fa-medkit text-blue-600 text-2xl mb-2"></i>
+          <p>Pharmacies</p>
+        </div>
+        <div class="text-center p-4 bg-white rounded-lg shadow animate delay-3">
+          <i class="fas fa-utensils text-orange-600 text-2xl mb-2"></i>
+          <p>Restaurants</p>
+        </div>
+        <div class="text-center p-4 bg-white rounded-lg shadow animate delay-4">
+          <i class="fas fa-shopping-bag text-purple-600 text-2xl mb-2"></i>
+          <p>Marchés</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FAQ === -->
+  <section id="faq" class="section faq-section">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12 animate">Questions Fréquentes</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Quelles sont les dimensions disponibles ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            Nous proposons deux formats principaux : <strong>80 mm × 80 mm</strong> (standard pour caisses grandes) et <strong>57 mm × 45 mm</strong> (pour TPE et caisses compactes).
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Le papier est-il sans BPA ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            Oui. Nos rouleaux sont présentés comme <strong>BPA Free</strong> par notre fournisseur certifié. Ils sont sécurisés pour un usage alimentaire et pharmaceutique.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Puis-je personnaliser l’emballage ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            Oui ! À partir de <strong>500 unités</strong>, nous imprimons votre logo, nom et couleurs sur les cartons et boîtes.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CONTACT === -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2 class="text-3xl font-bold mb-4 animate">Prêt à commander ?</h2>
+      <p class="mb-6 animate delay-1">Nous sommes là pour vous accompagner — que ce soit pour une commande ponctuelle ou un partenariat durable.</p>
+      <div class="contact-number animate delay-2">
+        📞 +237 679 49 42 14
+      </div>
+      <a href="https://wa.me/237679494214?text=Bonjour%20ThermoRoll%2C%20je%20souhaite%20commander%20des%20rouleaux%20de%20papier%20thermique." class="whatsapp-btn animate delay-3" target="_blank">
+        <i class="fab fa-whatsapp"></i> Commander par WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>ThermoRoll Cameroun</h4>
+          <p>Spécialiste du papier thermique professionnel au Cameroun depuis 2020.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Produits</h4>
+          <ul class="footer-links">
+            <li><a href="#">Rouleaux 80×80 mm</a></li>
+            <li><a href="#">Rouleaux 57×45 mm</a></li>
+            <li><a href="#">Cartons 100 rouleaux</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-phone mr-2"></i> +237 679 49 42 14</li>
+            <li><i class="fas fa-envelope mr-2"></i> contact@thermoroll.cm</li>
+            <li><i class="fas fa-map-marker-alt mr-2"></i> Douala, Cameroun</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 ThermoRoll Cameroun — Tous droits réservés.
+      </div>
+    </div>
+  </footer>
+
+  <!-- === PANIER MODAL === -->
+  <div id="cart-modal" class="cart-modal">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h3>Mon Panier</h3>
+      <button id="close-cart" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+    </div>
+    <div id="cart-items">
+      <p>Votre panier est vide.</p>
+    </div>
+    <div id="cart-total" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #eee; display: none;">
+      <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 1rem;">
+        <span>Total :</span>
+        <span id="total-amount">0 FCFA</span>
+      </div>
+      <a href="https://wa.me/237679494214" target="_blank" class="whatsapp-btn" style="width: 100%; justify-content: center;">
+        <i class="fab fa-whatsapp"></i> Passer la commande
+      </a>
+    </div>
+  </div>
+  <div id="overlay" class="overlay"></div>
+
+  <script>
+    // === PANIER ===
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function updateCartUI() {
+      const itemsEl = document.getElementById('cart-items');
+      const totalEl = document.getElementById('total-amount');
+      const totalSection = document.getElementById('cart-total');
+
+      if (cart.length === 0) {
+        itemsEl.innerHTML = '<p>Votre panier est vide.</p>';
+        totalSection.style.display = 'none';
+      } else {
+        let html = '';
+        let total = 0;
+        cart.forEach((item, i) => {
+          total += item.price;
+          html += `
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee;">
+              <span>${item.name}</span>
+              <div>
+                <span>${item.price.toLocaleString()} FCFA</span>
+                <button onclick="removeFromCart(${i})" style="margin-left: 8px; color: #ef4444; background: none; border: none; cursor: pointer;">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        itemsEl.innerHTML = html;
+        totalEl.textContent = total.toLocaleString() + ' FCFA';
+        totalSection.style.display = 'block';
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCartUI();
+      openCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function openCart() {
+      document.getElementById('cart-modal').style.right = '0';
+      document.getElementById('overlay').style.opacity = '1';
+      document.getElementById('overlay').style.visibility = 'visible';
+    }
+
+    function closeCart() {
+      document.getElementById('cart-modal').style.right = '-400px';
+      document.getElementById('overlay').style.opacity = '0';
+      document.getElementById('overlay').style.visibility = 'hidden';
+    }
+
+    // === FAQ TOGGLE ===
+    function toggleFAQ(el) {
+      const item = el.parentElement;
+      const answer = item.querySelector('.faq-answer');
+      const icon = el.querySelector('.faq-icon');
+      item.classList.toggle('active');
+      answer.classList.toggle('show');
+      icon.classList.toggle('fa-chevron-up');
+      icon.classList.toggle('fa-chevron-down');
+    }
+
+    // === MENU MOBILE ===
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('open');
+      document.getElementById('overlay').style.opacity = '1';
+      document.getElementById('overlay').style.visibility = 'visible';
+    });
+    document.getElementById('close-cart').addEventListener('click', closeCart);
+    document.getElementById('overlay').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+      closeCart();
+    });
+
+    // === INIT ===
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartUI();
+
+      // Animation on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.animate').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
+
