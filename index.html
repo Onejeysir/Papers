@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThermoRoll – Rouleaux Thermiques à Douala</title>
+  <!-- Google Fonts - Polices abordables et professionnelles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2563eb; /* Bleu professionnel */
+      --secondary: #0d9488; /* Turquoise élégant */
+      --accent: #d97706; /* Orange pour accents */
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-700: #334155;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+      --transition: all 0.3s ease;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 50px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--light);
+      color: var(--gray-700);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--dark);
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .animate {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* === UTILS === */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .section {
+      padding: 6rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .section-title p {
+      color: var(--gray-700);
+      margin-top: 15px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #1d4ed8);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), #0f766e);
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #0f766e, #0d5a51);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+    
+    .btn-whatsapp:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+    
+    .badge-new {
+      background: linear-gradient(135deg, var(--accent), #b45309);
+      color: white;
+    }
+    
+    .badge-popular {
+      background: linear-gradient(135deg, var(--secondary), #0f766e);
+      color: white;
+    }
+
+    /* === HEADER === */
+    header {
+      background: white;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    header.scrolled {
+      box-shadow: var(--shadow-md);
+      padding: 8px 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .logo i {
+      font-size: 2rem;
+      color: var(--secondary);
+    }
+    
+    .logo span {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+      position: relative;
+      padding: 5px 0;
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover, 
+    .nav-links a.active {
+      color: var(--primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .cart-icon {
+      position: relative;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .cart-icon:hover {
+      color: var(--secondary);
+      transform: scale(1.1);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--danger);
+      color: white;
+      font-size: 0.7rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary);
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+
+    /* === HERO === */
+    .hero {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.92), rgba(13, 148, 136, 0.95)), url('https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 10rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 4.2rem;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    .hero p {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+    
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* === PRODUITS === */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    
+    .card {
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .card-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 10;
+    }
+    
+    .card-img {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .card-img i {
+      font-size: 5rem;
+      opacity: 0.8;
+    }
+    
+    .card-body {
+      padding: 25px;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    
+    .card-desc {
+      color: var(--gray-700);
+      margin-bottom: 20px;
+      min-height: 60px;
+    }
+    
+    .price-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0;
+    }
+    
+    .price {
+      font-weight: 800;
+      font-size: 1.75rem;
+      color: var(--secondary);
+    }
+    
+    .min-order {
+      background: var(--gray-100);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+    
+    .dimension-note {
+      background: #dbeafe;
+      color: var(--primary);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      margin-top: 15px;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .products-note {
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(37, 99, 235, 0.05));
+      border-left: 4px solid var(--secondary);
+      padding: 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 3rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    /* === QUALITÉ === */
+    .quality-section {
+      background: white;
+    }
+    
+    .quality-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    
+    .quality-item {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: var(--radius-md);
+      background: var(--gray-100);
+      transition: var(--transition);
+    }
+    
+    .quality-item:hover {
+      background: white;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .quality-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 1.8rem;
+      transition: var(--transition);
+    }
+    
+    .quality-item:hover .quality-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .quality-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .quality-desc {
+      color: var(--gray-700);
+    }
+
+    /* === CLIENTS === */
+    .clients-section {
+      background: linear-gradient(135deg, var(--gray-100), white);
+    }
+    
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    
+    .client-card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    
+    .client-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .client-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .client-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .client-desc {
+      color: var(--gray-700);
+      font-style: italic;
+    }
+    
+    .usage-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin: 3rem 0 2rem;
+      color: var(--dark);
+      font-weight: 700;
+    }
+    
+    .usage-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 20px;
+    }
+    
+    .usage-item {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 25px;
+      width: 200px;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: var(--transition);
+    }
+    
+    .usage-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .usage-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+    
+    .usage-name {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+
+    /* === HOW TO ORDER === */
+    .order-section {
+      background: linear-gradient(135deg, white, var(--gray-100));
+    }
+    
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .step-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 35px 30px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .step-number {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 45px;
+      height: 45px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+    }
+    
+    .step-icon {
+      font-size: 3.5rem;
+      color: var(--secondary);
+      margin-bottom: 25px;
+    }
+    
+    .step-title {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .step-desc {
+      color: var(--gray-700);
+    }
+
+    /* === FAQ === */
+    .faq-section {
+      background: white;
+    }
+    
+    .faq-container {
+      max-width: 900px;
+      margin: 3rem auto 0;
+    }
+    
+    .faq-item {
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .faq-item:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .faq-question {
+      padding: 22px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--dark);
+      background: var(--gray-100);
+      transition: var(--transition);
+    }
+    
+    .faq-question:hover {
+      background: #dbeafe;
+      color: var(--primary);
+    }
+    
+    .faq-icon {
+      transition: var(--transition);
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      color: var(--gray-700);
+      line-height: 1.7;
+      background: white;
+    }
+    
+    .faq-answer.show {
+      max-height: 500px;
+      padding: 20px 25px;
+    }
+
+    /* === CONTACT === */
+    .contact-section {
+      background: linear-gradient(135deg, var(--dark), #0f172a), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 7rem 0;
+      position: relative;
+    }
+    
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+    }
+    
+    .contact-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .contact-section h2 {
+      color: white;
+      margin-bottom: 20px;
+    }
+    
+    .contact-section p {
+      opacity: 0.9;
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+    }
+    
+    .contact-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 15px 40px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      margin: 25px 0;
+      letter-spacing: 2px;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .delivery-info {
+      background: rgba(255, 255, 255, 0.1);
+      display: inline-block;
+      padding: 8px 25px;
+      border-radius: 50px;
+      margin-top: 15px;
+      font-weight: 500;
+      font-size: 1.15rem;
+    }
+    
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      padding: 16px 45px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+      transition: var(--transition);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+      background: #128C7E;
+    }
+    
+    .whatsapp-btn i {
+      font-size: 1.8rem;
+    }
+
+    /* === TESTIMONIALS === */
+    .testimonials-section {
+      background: linear-gradient(135deg, var(--gray-100), white);
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 30px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-size: 6rem;
+      color: rgba(37, 99, 235, 0.1);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .testimonial-content {
+      margin-top: 20px;
+      font-style: italic;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray-200);
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    
+    .author-info h4 {
+      font-size: 1.25rem;
+      margin-bottom: 3px;
+      color: var(--dark);
+    }
+    
+    .author-info p {
+      color: var(--gray-700);
+      font-size: 0.95rem;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      padding: 5rem 0 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .footer-col h3 {
+      color: white;
+      margin-bottom: 25px;
+      font-size: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+    
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+    
+    .footer-links i {
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+    
+    .footer-contact li {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 15px;
+    }
+    
+    .footer-contact i {
+      color: var(--secondary);
+      font-size: 1.2rem;
+      margin-top: 3px;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 25px;
+      border-top: 1px solid #334155;
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* === PANIER MODAL AMÉLIORÉ === */
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 420px;
+      height: 100vh;
+      background: white;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.18);
+      z-index: 2000;
+      transition: right 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    
+    .cart-modal.show {
+      right: 0;
+    }
+    
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--gray-200);
+      margin-bottom: 25px;
+    }
+    
+    .cart-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .cart-title i {
+      color: var(--secondary);
+    }
+    
+    .close-cart {
+      background: var(--danger);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close-cart:hover {
+      background: #dc2626;
+      transform: rotate(90deg);
+    }
+    
+    .cart-items {
+      flex: 1;
+    }
+    
+    .cart-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px dashed var(--gray-200);
+    }
+    
+    .cart-item-img {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--radius-sm);
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    
+    .cart-item-details h4 {
+      font-size: 1.15rem;
+      margin-bottom: 5px;
+      color: var(--dark);
+      font-weight: 600;
+    }
+    
+    .cart-item-price {
+      font-weight: 700;
+      color: var(--secondary);
+      margin-top: 3px;
+    }
+    
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    
+    .quantity-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .quantity-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .quantity {
+      width: 32px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--gray-300);
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .remove-item {
+      color: var(--danger);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .remove-item:hover {
+      background: rgba(239, 68, 68, 0.1);
+      transform: scale(1.2);
+    }
+    
+    .cart-summary {
+      background: linear-gradient(135deg, var(--gray-100), white);
+      border-radius: var(--radius-md);
+      padding: 25px;
+      margin-top: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.4rem;
+      font-weight: 800;
+      padding: 15px 0;
+      border-top: 2px solid var(--gray-300);
+      border-bottom: 2px solid var(--gray-300);
+      margin: 15px 0;
+      color: var(--dark);
+    }
+    
+    .cart-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .cart-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--gray-700);
+    }
+    
+    .cart-empty i {
+      font-size: 4rem;
+      color: var(--gray-300);
+      margin-bottom: 20px;
+    }
+    
+    .cart-empty p {
+      font-size: 1.25rem;
+      margin-bottom: 25px;
+    }
+    
+    .cart-note {
+      background: #dbeafe;
+      border-left: 4px solid var(--primary);
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.65);
+      z-index: 1999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.35s ease;
+    }
+    
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* === NOTIFICATION === */
+    .notification {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: white;
+      color: var(--dark);
+      padding: 15px 25px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeInUp 0.3s, fadeOut 0.3s 2.7s;
+      font-weight: 500;
+      border-left: 4px solid var(--success);
+    }
+    
+    .notification i {
+      font-size: 1.2rem;
+      color: var(--success);
+    }
+
+    /* === MOBILE MENU === */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 85%;
+      max-width: 350px;
+      height: 100vh;
+      background: white;
+      box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+      z-index: 2500;
+      transition: left 0.35s ease;
+      padding: 25px;
+      padding-top: 80px;
+    }
+    
+    .mobile-menu.open {
+      left: 0;
+    }
+    
+    .mobile-menu a {
+      display: block;
+      padding: 15px 20px;
+      color: var(--dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-200);
+      font-weight: 500;
+      font-size: 1.15rem;
+      transition: var(--transition);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+    }
+    
+    .mobile-menu a:hover, 
+    .mobile-menu a.active {
+      background: #dbeafe;
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+    
+    .close-menu {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: var(--danger);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      .section {
+        padding: 5rem 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hamburger { 
+        display: block; 
+      }
+      
+      .nav-links { 
+        display: none; 
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero-buttons .btn {
+        width: 100%;
+        max-width: 350px;
+      }
+      
+      .hero-stats {
+        gap: 20px;
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .stat-label {
+        font-size: 0.95rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+      
+      .cart-modal {
+        width: 100%;
+        max-width: 420px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .quality-grid,
+      .clients-grid,
+      .steps-container,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-number {
+        font-size: 2.3rem;
+        padding: 12px 30px;
+      }
+      
+      .whatsapp-btn {
+        width: 100%;
+        max-width: 350px;
+        padding: 15px;
+        font-size: 1.15rem;
+      }
+      
+      .whatsapp-btn i {
+        font-size: 1.6rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .hero {
+        padding: 8rem 0;
+      }
+      
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      
+      .section {
+        padding: 4rem 0;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+      }
+      
+      .cart-title {
+        font-size: 1.6rem;
+      }
+      
+      .price {
+        font-size: 1.5rem;
+      }
+      
+      .contact-number {
+        font-size: 2rem;
+        padding: 10px 25px;
+      }
+      
+      .delivery-info {
+        font-size: 1rem;
+        padding: 6px 20px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === HEADER === -->
+  <header>
+    <div class="container header-content">
+      <a href="#home" class="logo">
+        <i class="fas fa-cubes"></i>
+        <span>ThermoRoll</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#home" class="active">Accueil</a>
+        <a href="#produits">Produits</a>
+        <a href="#qualite">Qualité</a>
+        <a href="#clients">Utilisation</a>
+        <a href="#commander">Comment Commander</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button id="open-cart" class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </button>
+      </div>
+      <button class="hamburger" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- === MOBILE MENU === -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="close-menu" id="close-menu">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="#home">Accueil</a>
+    <a href="#produits">Produits</a>
+    <a href="#qualite">Qualité</a>
+    <a href="#clients">Utilisation</a>
+    <a href="#commander">Comment Commander</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- === HERO === -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <h1 class="animate">Rouleaux Thermiques Professionnels pour Votre Business à Douala</h1>
+      <p class="animate delay-1">Papier thermique de haute qualité pour pharmacies, boulangeries et supermarchés. Livraison rapide dans toute la ville de Douala. Commandez dès maintenant !</p>
+      <div class="hero-buttons">
+        <a href="#produits" class="btn btn-primary animate delay-2">
+          <i class="fas fa-shopping-bag"></i> Découvrir nos produits
+        </a>
+        <a href="#contact" class="btn btn-whatsapp animate delay-3">
+          <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item animate delay-4">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Dimensions disponibles</div>
+        </div>
+        <div class="stat-item animate delay-5">
+          <div class="stat-number">Fast</div>
+          <div class="stat-label">Livraison express</div>
+        </div>
+        <div class="stat-item animate delay-6">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === PRODUITS === -->
+  <section id="produits" class="section">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>Nos Rouleaux Thermiques Professionnels</h2>
+        <p>Des rouleaux de papier thermique de haute qualité pour tous vos besoins d'impression de factures et reçus. Parfait pour les pharmacies, boulangeries et supermarchés.</p>
+      </div>
+      
+      <div class="products-grid">
+        <!-- Produit 1 -->
+        <div class="card animate delay-1">
+          <div class="card-badge">
+            <span class="badge badge-popular">Populaire</span>
+          </div>
+          <div class="card-img">
+            <i class="fas fa-receipt" style="color: var(--secondary);"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">80 mm × 80 m</h3>
+            <p class="card-desc">Idéal pour les caisses de supermarchés et pharmacies. Longueur standard pour une utilisation intensive.</p>
+            <div class="price-container">
+              <div class="price">5 000 FCFA</div>
+              <div class="min-order">À partir de 50 unités</div>
+            </div>
+            <button class="btn btn-secondary w-full" onclick="addToCart('Rouleau 80×80 mm', 5000)">
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+        
+        <!-- Produit 2 -->
+        <div class="card animate delay-2">
+          <div class="card-img">
+            <i class="fas fa-receipt" style="color: var(--primary);"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">80 mm × 70 m</h3>
+            <p class="card-desc">Parfait pour les caisses enregistreuses standard. Excellente qualité d'impression pour vos factures.</p>
+            <div class="price-container">
+              <div class="price">4 500 FCFA</div>
+              <div class="min-order">À partir de 50 unités</div>
+            </div>
+            <button class="btn btn-secondary w-full" onclick="addToCart('Rouleau 80×70 mm', 4500)">
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+        
+        <!-- Produit 3 -->
+        <div class="card animate delay-3">
+          <div class="card-badge">
+            <span class="badge badge-new">Nouveau</span>
+          </div>
+          <div class="card-img">
+            <i class="fas fa-receipt" style="color: var(--accent);"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">80 mm × 60 m</h3>
+            <p class="card-desc">Format compact pour les espaces réduits. Idéal pour les petites boutiques et boulangeries.</p>
+            <div class="price-container">
+              <div class="price">4 000 FCFA</div>
+              <div class="min-order">À partir de 50 unités</div>
+            </div>
+            <button class="btn btn-secondary w-full" onclick="addToCart('Rouleau 80×60 mm', 4000)">
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+        
+        <!-- Produit 4 -->
+        <div class="card animate delay-4">
+          <div class="card-img">
+            <i class="fas fa-file-invoice" style="color: var(--secondary);"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">57 mm × 50 m</h3>
+            <p class="card-desc">Standard pour terminaux de paiement (TPE) et petites caisses. Parfait pour les restaurants et kiosques.</p>
+            <div class="price-container">
+              <div class="price">4 000 FCFA</div>
+              <div class="min-order">À partir de 50 unités</div>
+            </div>
+            <button class="btn btn-secondary w-full" onclick="addToCart('Rouleau 57×50 mm', 4000)">
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+        
+        <!-- Produit 5 -->
+        <div class="card animate delay-5">
+          <div class="card-img">
+            <i class="fas fa-file-invoice" style="color: var(--primary);"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">57 mm × 40 m</h3>
+            <p class="card-desc">Format économique pour une utilisation quotidienne. Convient aux petits commerces et marchés.</p>
+            <div class="price-container">
+              <div class="price">3 500 FCFA</div>
+              <div class="min-order">À partir de 50 unités</div>
+            </div>
+            <button class="btn btn-secondary w-full" onclick="addToCart('Rouleau 57×40 mm', 3500)">
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+        
+        <!-- Produit 6 -->
+        <div class="card animate delay-6">
+          <div class="card-img">
+            <i class="fas fa-file-invoice" style="color: var(--accent);"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">57 mm × 30 m</h3>
+            <p class="card-desc">Solution compacte pour les espaces très réduits. Idéal pour les taxis et petits stands.</p>
+            <div class="price-container">
+              <div class="price">3 000 FCFA</div>
+              <div class="min-order">À partir de 50 unités</div>
+            </div>
+            <button class="btn btn-secondary w-full" onclick="addToCart('Rouleau 57×30 mm', 3000)">
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="products-note animate">
+        <p><i class="fas fa-info-circle"></i> Possibilité de livrer d'autres dimensions en fonction de votre demande spécifique. Contactez-nous pour un devis personnalisé.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === QUALITÉ === -->
+  <section id="qualite" class="section quality-section">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>Pourquoi Choisir Nos Rouleaux Thermiques ?</h2>
+        <p>Nous mettons un point d'honneur à fournir des produits de la plus haute qualité pour garantir la satisfaction de nos clients et la pérennité de leur matériel.</p>
+      </div>
+      
+      <div class="quality-grid">
+        <div class="quality-item animate delay-1">
+          <div class="quality-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="quality-title">Qualité Premium</h3>
+          <p class="quality-desc">Papier thermique épais et résistant, garantissant une impression nette et durable sans bavures.</p>
+        </div>
+        
+        <div class="quality-item animate delay-2">
+          <div class="quality-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3 class="quality-title">Écologique & Sécurisé</h3>
+          <p class="quality-desc">Papier sans BPA, respectueux de l'environnement et sans danger pour la santé de vos clients.</p>
+        </div>
+        
+        <div class="quality-item animate delay-3">
+          <div class="quality-icon">
+            <i class="fas fa-truck"></i>
+          </div>
+          <h3 class="quality-title">Livraison Rapide</h3>
+          <p class="quality-desc">Livraison express dans toute la ville de Douala sous 24 à 48 heures après confirmation de commande.</p>
+        </div>
+        
+        <div class="quality-item animate delay-4">
+          <div class="quality-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="quality-title">Support Client</h3>
+          <p class="quality-desc">Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions 7j/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CLIENTS === -->
+  <section id="clients" class="section clients-section">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>Idéal Pour Tous Types de Commerces</h2>
+        <p>Nos rouleaux thermiques sont spécialement conçus pour répondre aux besoins des professionnels dans divers secteurs d'activité.</p>
+      </div>
+      
+      <h3 class="usage-title animate">Parfait pour l'impression de factures dans :</h3>
+      
+      <div class="usage-container">
+        <div class="usage-item animate delay-1">
+          <div class="usage-icon">
+            <i class="fas fa-medkit"></i>
+          </div>
+          <div class="usage-name">Pharmacies</div>
+        </div>
+        <div class="usage-item animate delay-2">
+          <div class="usage-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <div class="usage-name">Boulangeries</div>
+        </div>
+        <div class="usage-item animate delay-3">
+          <div class="usage-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="usage-name">Supermarchés</div>
+        </div>
+        <div class="usage-item animate delay-4">
+          <div class="usage-icon">
+            <i class="fas fa-store"></i>
+          </div>
+          <div class="usage-name">Boutiques</div>
+        </div>
+      </div>
+      
+      <div class="clients-grid">
+        <div class="client-card animate delay-5">
+          <div class="client-icon">
+            <i class="fas fa-clinic-medical"></i>
+          </div>
+          <h3 class="client-title">Pharmacies</h3>
+          <p class="client-desc">Impression claire et durable des ordonnances et factures pour une meilleure archivage.</p>
+        </div>
+        
+        <div class="client-card animate delay-6">
+          <div class="client-icon">
+            <i class="fas fa-bread-slice"></i>
+          </div>
+          <h3 class="client-title">Boulangeries</h3>
+          <p class="client-desc">Rouleaux résistants à la chaleur et à l'humidité, parfaits pour l'environnement de boulangerie.</p>
+        </div>
+        
+        <div class="client-card animate delay-7">
+          <div class="client-icon">
+            <i class="fas fa-shopping-basket"></i>
+          </div>
+          <h3 class="client-title">Supermarchés</h3>
+          <p class="client-desc">Grande capacité pour les caisses à fort volume, réduisant les changements fréquents de rouleaux.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === HOW TO ORDER === -->
+  <section id="commander" class="section order-section">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>Comment Commander en 3 Étapes Simples</h2>
+        <p>Passer commande n'a jamais été aussi facile. Suivez ces étapes pour recevoir vos rouleaux thermiques rapidement à Douala.</p>
+      </div>
+      
+      <div class="steps-container">
+        <div class="step-card animate delay-1">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <i class="fas fa-cart-shopping"></i>
+          </div>
+          <h3 class="step-title">Choisissez Vos Produits</h3>
+          <p class="step-desc">Sélectionnez les dimensions et quantités de rouleaux thermiques dont vous avez besoin dans notre catalogue.</p>
+        </div>
+        
+        <div class="step-card animate delay-2">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3 class="step-title">Contactez-nous sur WhatsApp</h3>
+          <p class="step-desc">Cliquez sur le bouton WhatsApp ou envoyez un message au +237 687 49 07 26 avec votre sélection.</p>
+        </div>
+        
+        <div class="step-card animate delay-3">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <i class="fas fa-truck-fast"></i>
+          </div>
+          <h3 class="step-title">Recevez Votre Livraison</h3>
+          <p class="step-desc">Nous préparons et livrons votre commande rapidement et avec soin dans toute la ville de Douala.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === TESTIMONIALS === -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>Ils Nous Font Confiance</h2>
+        <p>Découvrez ce que disent nos clients satisfaits à propos de la qualité de nos produits et de notre service de livraison.</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate delay-1">
+          <div class="testimonial-content">
+            <p>En tant que pharmacien à Douala, la qualité d'impression est cruciale pour nos ordonnances. Les rouleaux de ThermoRoll sont impeccables et leur service de livraison est toujours ponctuel.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">JP</div>
+            <div class="author-info">
+              <h4>Jean-Pierre M.</h4>
+              <p>Pharmacie , Douala</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card animate delay-2">
+          <div class="testimonial-content">
+            <p>Je gère une chaîne de boulangeries à Douala et j'utilise leurs rouleaux thermiques depuis plus d'un an. Leur résistance à l'humidité est exceptionnelle et le prix est très compétitif.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div class="author-info">
+              <h4>Sandra M.</h4>
+              <p>Boulangerie , Douala</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card animate delay-3">
+          <div class="testimonial-content">
+            <p>En tant que gérant de supermarché, nous avons besoin de rouleaux fiables pour nos caisses. ThermoRoll nous fournit des produits de qualité avec une livraison toujours à temps. Je recommande vivement !</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">KS</div>
+            <div class="author-info">
+              <h4>Kanga S.</h4>
+              <p>Supermarché , Douala</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FAQ === -->
+  <section id="faq" class="section faq-section">
+    <div class="container">
+      <div class="section-title animate">
+        <h2>Questions Fréquentes</h2>
+        <p>Vous avez des questions ? Nous avons les réponses. Consultez les questions les plus fréquemment posées par nos clients.</p>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item animate delay-1">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Quelle est la quantité minimale de commande ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>La commande minimale est de <strong>50 unités</strong> par dimension. Cela nous permet de vous offrir les meilleurs prix tout en assurant une livraison efficace dans Douala.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item animate delay-2">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Proposez-vous d'autres dimensions que celles affichées ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oui, absolument ! Nous pouvons fournir d'autres dimensions en fonction de vos besoins spécifiques. Contactez-nous via WhatsApp au <strong>+237 687 49 07 26</strong> pour discuter de vos exigences particulières.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item animate delay-3">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Quelles sont vos zones de livraison ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Nous livrons <strong>uniquement dans la ville de Douala</strong>. Nos tournées de livraison couvrent tous les quartiers de Douala, de Akwa à Bonabéri, en passant par Deido, Bali et bien d'autres.</p>
+          </div>
+        </div>
+        
+        <!-- <div class="faq-item animate delay-4">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Combien de temps prend la livraison ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Une fois votre commande confirmée, nous assurons la livraison dans un délai de <strong>24 à 48 heures</strong> dans toute la ville de Douala. Vous recevrez un message de confirmation avec l'horaire de livraison précis.</p>
+          </div>
+        </div> -->
+        
+        <div class="faq-item animate delay-5">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Le papier thermique est-il sans BPA ?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oui, tous nos rouleaux thermiques sont <strong>100% sans BPA</strong>. Nous accordons une grande importance à la sécurité de vos clients et à la protection de l'environnement. Notre papier est certifié conforme aux normes internationales.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CONTACT === -->
+  <section id="contact" class="contact-section">
+    <div class="container contact-content">
+      <h2 class="animate">Prêt à Commander ?</h2>
+      <p class="animate delay-1">Contactez-nous dès maintenant via WhatsApp pour passer votre commande ou obtenir un devis personnalisé pour vos besoins spécifiques.</p>
+      
+      
+      <div class="delivery-info animate delay-3">
+        <i class="fas fa-map-marker-alt"></i> Livraisons uniquement dans la ville de Douala
+      </div>
+      
+      <button class="btn whatsapp-btn animate delay-4" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Commander Maintenant sur WhatsApp
+      </button>
+      
+      <p class="animate delay-5" style="margin-top: 25px; opacity: 0.85; font-size: 1.1rem;">
+        <i class="fas fa-clock"></i> Service client disponible 7j/7 de 8h à 20h
+      </p>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>ThermoRoll</h3>
+          <p style="margin-top: 20px; line-height: 1.7; color: #94a3b8;">
+            Votre partenaire de confiance pour les rouleaux thermiques professionnels à Douala. Qualité premium, livraison rapide et service client exceptionnel.
+          </p>
+          <div class="social-links">
+
+            <a href="https://wa.me/237687490726" target="_blank">
+                 <i class="fab fa-whatsapp"></i>
+            </a>
+            
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Liens Utiles</h3>
+          <ul class="footer-links">
+            <li><a href="#home"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+            <li><a href="#produits"><i class="fas fa-chevron-right"></i> Nos Produits</a></li>
+            <li><a href="#qualite"><i class="fas fa-chevron-right"></i> Qualité Premium</a></li>
+            <li><a href="#commander"><i class="fas fa-chevron-right"></i> Comment Commander</a></li>
+            <li><a href="#faq"><i class="fas fa-chevron-right"></i> Questions Fréquentes</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Nos Produits</h3>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Rouleaux 80mm × 80m</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Rouleaux 80mm × 70m</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Rouleaux 80mm × 60m</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Rouleaux 57mm × 50m</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Rouleaux 57mm × 40m</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Rouleaux 57mm × 30m</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+237 687 49 07 26</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>thermorollcameroun@gmail.com</span>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Douala, Cameroun</span>
+            </li>
+            <li>
+              <i class="fas fa-clock"></i>
+              <span>Lun-Sam: 8h-20h, Dim: 9h-17h</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2026 ThermoRoll — Tous droits réservés. Spécialiste en rouleaux thermiques professionnels à Douala.
+      </div>
+    </div>
+  </footer>
+
+  <!-- === PANIER MODAL === -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-header">
+      <h3 class="cart-title"><i class="fas fa-shopping-cart"></i> Votre Panier</h3>
+      <button id="close-cart" class="close-cart">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="cart-items" id="cart-items">
+      <!-- Cart items will be inserted here dynamically -->
+      <div class="cart-empty">
+        <i class="fas fa-box-open"></i>
+        <p>Votre panier est vide</p>
+        <button class="btn btn-primary" onclick="closeCart()">Ajouter des produits</button>
+      </div>
+    </div>
+    
+    <div class="cart-summary" id="cart-summary" style="display: none;">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="total-amount">0 FCFA</span>
+      </div>
+      
+      <div class="cart-note">
+        <p><i class="fas fa-info-circle"></i> Minimum de commande : 50 unités par dimension. Livraison gratuite à Douala pour les commandes supérieures à 100 000 FCFA.</p>
+      </div>
+      
+      <div class="cart-actions">
+        <button class="btn btn-whatsapp" id="whatsapp-order">
+          <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+        </button>
+        <button class="btn btn-outline" onclick="clearCart()">
+          <i class="fas fa-trash-alt"></i> Vider le panier
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="overlay" class="overlay"></div>
+
+  <script>
+    // === PANIER 100% FONCTIONNEL ===
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Mise à jour de l'interface du panier
+    function updateCartUI() {
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartSummaryEl = document.getElementById('cart-summary');
+      const totalAmountEl = document.getElementById('total-amount');
+      const cartCountEl = document.querySelector('.cart-count');
+      
+      // Mise à jour du compteur du panier
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCountEl.textContent = totalCount;
+      
+      // Affichage/masquage du résumé du panier
+      if (cart.length > 0) {
+        cartSummaryEl.style.display = 'block';
+      } else {
+        cartSummaryEl.style.display = 'none';
+      }
+      
+      // Calcul du total
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      totalAmountEl.textContent = total.toLocaleString() + ' FCFA';
+      
+      // Génération du contenu du panier
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+          <div class="cart-empty">
+            <i class="fas fa-shopping-basket"></i>
+            <p>Votre panier est vide</p>
+            <button class="btn btn-primary" onclick="closeCart()">Ajouter des produits</button>
+          </div>
+        `;
+        return;
+      }
+      
+      let html = '';
+      cart.forEach((item, index) => {
+        html += `
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <i class="fas fa-receipt"></i>
+            </div>
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <div class="cart-item-price">${item.price.toLocaleString()} FCFA</div>
+              <div class="cart-item-quantity">
+                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                <input type="text" class="quantity" value="${item.quantity}" readonly>
+                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button class="remove-item" onclick="removeFromCart(${index})" title="Supprimer">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        `;
+      });
+      
+      cartItemsEl.innerHTML = html;
+      
+      // Sauvegarde dans le localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    
+    // Ajout au panier
+    function addToCart(name, price) {
+      // Vérifier si le produit existe déjà dans le panier
+      const existingItemIndex = cart.findIndex(item => item.name === name);
+      
+      if (existingItemIndex !== -1) {
+        // Si le produit existe, incrémenter la quantité de 50 (quantité minimale)
+        cart[existingItemIndex].quantity += 50;
+        showNotification(`${name} : +50 unités ajoutées`);
+      } else {
+        // Sinon, ajouter un nouveau produit avec la quantité minimale de 50
+        cart.push({
+          name: name,
+          price: price,
+          quantity: 50
+        });
+        showNotification(`${name} ajouté au panier (${50} unités)`);
+      }
+      
+      // Mettre à jour l'interface
+      updateCartUI();
+      
+      // Ouvrir le panier
+      openCart();
+    }
+    
+    // Mise à jour de la quantité
+    function updateQuantity(index, change) {
+      const itemName = cart[index].name;
+      cart[index].quantity += change * 50; // Changer par incréments de 50
+      
+      // Supprimer l'article si la quantité est inférieure à 50
+      if (cart[index].quantity < 50) {
+        cart.splice(index, 1);
+        showNotification(`${itemName} supprimé du panier`);
+      } else {
+        showNotification(`${itemName} : ${change > 0 ? '+' : ''}${change * 50} unités`);
+      }
+      
+      updateCartUI();
+    }
+    
+    // Suppression du panier
+    function removeFromCart(index) {
+      const itemName = cart[index].name;
+      cart.splice(index, 1);
+      updateCartUI();
+      showNotification(`${itemName} supprimé du panier`);
+    }
+    
+    // Vider le panier
+    function clearCart() {
+      if (cart.length === 0) {
+        showNotification('Le panier est déjà vide');
+        return;
+      }
+      
+      if (confirm('Voulez-vous vraiment vider votre panier ?')) {
+        cart = [];
+        updateCartUI();
+        showNotification('Panier vidé avec succès');
+      }
+    }
+    
+    // Ouvrir le panier
+    function openCart() {
+      document.getElementById('cart-modal').classList.add('show');
+      document.getElementById('overlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Fermer le panier
+    function closeCart() {
+      document.getElementById('cart-modal').classList.remove('show');
+      document.getElementById('overlay').classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Notification temporaire
+    function showNotification(message) {
+      // Supprimer les anciennes notifications
+      const oldNotification = document.querySelector('.notification');
+      if (oldNotification) {
+        oldNotification.remove();
+      }
+      
+      // Créer un élément de notification
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        ${message}
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Supprimer après 3 secondes
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+    
+    // Générer le message WhatsApp
+    document.getElementById('whatsapp-order').addEventListener('click', function() {
+      if (cart.length === 0) {
+        showNotification('Votre panier est vide');
+        return;
+      }
+      
+      // Calculer le total
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      
+      // Générer le message
+      let message = 'Bonjour ThermoRoll, je souhaite commander les produits suivants :\n\n';
+      
+      cart.forEach(item => {
+        message += `• ${item.name} : ${item.quantity} unités à ${item.price.toLocaleString()} FCFA l\'unité\n`;
+      });
+      
+      message += `\nTotal : ${total.toLocaleString()} FCFA\n`;
+      message += `\nJe souhaite une livraison à Douala. Merci de me contacter pour finaliser la commande.`;
+      
+      // Ouvrir WhatsApp avec le message
+      const whatsappUrl = `https://wa.me/237687490726?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      // Fermer le panier après 2 secondes
+      setTimeout(closeCart, 2000);
+      
+      // Message de confirmation
+      showNotification('Ouverture de WhatsApp... Votre commande a été préparée !');
+    });
+    
+    // Ouvrir WhatsApp depuis le bouton du hero
+    function openWhatsApp() {
+      const message = 'Bonjour ThermoRoll, je souhaite commander des rouleaux thermiques pour mon commerce à Douala. Pouvez-vous me fournir votre catalogue complet et vos conditions de livraison ?';
+      const whatsappUrl = `https://wa.me/237687490726?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+    
+    // === FAQ TOGGLE ===
+    function toggleFAQ(element) {
+      const item = element.parentElement;
+      const answer = item.querySelector('.faq-answer');
+      const icon = element.querySelector('.faq-icon');
+      
+      // Fermer tous les autres éléments FAQ
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-answer').classList.remove('show');
+          otherItem.querySelector('.faq-icon').classList.remove('fa-chevron-up');
+          otherItem.querySelector('.faq-icon').classList.add('fa-chevron-down');
+        }
+      });
+      
+      // Basculer l'élément actuel
+      item.classList.toggle('active');
+      answer.classList.toggle('show');
+      
+      if (item.classList.contains('active')) {
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+      } else {
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+      }
+    }
+    
+    // === MENU MOBILE ===
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('open');
+      document.getElementById('overlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    document.getElementById('close-menu').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('overlay').classList.remove('show');
+      document.body.style.overflow = 'auto';
+    });
+    
+    document.getElementById('overlay').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('cart-modal').classList.remove('show');
+      document.getElementById('overlay').classList.remove('show');
+      document.body.style.overflow = 'auto';
+    });
+    
+    document.getElementById('open-cart').addEventListener('click', openCart);
+    document.getElementById('close-cart').addEventListener('click', closeCart);
+    
+    // === SCROLL NAVIGATION ===
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // === ANIMATIONS AU DÉFILEMENT ===
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartUI();
+      
+      // Animation au défilement
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      // Observer tous les éléments avec la classe 'animate'
+      document.querySelectorAll('.animate').forEach(element => {
+        observer.observe(element);
+      });
+      
+      // Gestion des liens de navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Fermer le menu mobile si ouvert
+          document.getElementById('mobile-menu').classList.remove('open');
+          document.getElementById('overlay').classList.remove('show');
+          document.body.style.overflow = 'auto';
+          
+          // Faire défiler vers la section
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            
+            // Mettre à jour la classe active dans la navigation
+            document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
+              link.classList.remove('active');
+            });
+            this.classList.add('active');
+          }
+        });
+      });
+      
+      // Fermer le panier avec la touche Échap
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeCart();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
